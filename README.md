@@ -27,7 +27,8 @@ dans le fichier `View/template.php`, c'est lui qui s'occupera de charger la vue 
 Ce fichier se trouve obligatoirement dans le dossier `Controller/`
 
 Le controller contient un switch tel que : 
-```
+
+```php
 <?php
 switch($action){
     case "actionPossible1":
@@ -50,7 +51,7 @@ L'objectif est ici de pouvoir faire plusieurs controller, et donc de séparer au
 ### Le template
 Le template permet de pouvoir modifier le design du site facilement, sans devoir parcourir l'ensemble des vues du site. 
 Il ressemble par exemple à : 
-```
+```php
 <!DOCTYPE html>
 <html lang="en">
 <head>
