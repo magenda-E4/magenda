@@ -8,6 +8,38 @@ pour voir la premiere page du site.
 
 La suite des pages sera chargé tel que : <br />
 <code>http://localhost/nomdudossier/?controller=<u>NomDuController</u>&action=<u>ActionARealiser</u></code>
+## Configuration de la base de données
+
+### Le fichier Config.php
+Pour bien configurer le projet vous devez créer un fichier `Config.php` dans le dossier `Config`
+Vous pouvez directement copier coller le fichier "Config.default.php" et modifier les valeurs. 
+
+Attention, le fichier Config.php doit être VOTRE fichier, et donc ne jamais être "publié" sur git(hub).
+
+```php
+<?php
+namespace Magenda\Config;
+class Config{
+    // Informations pour la connexion à la bdd
+    const DB_HOSTNAME = "localhost";
+    // Identifiant de connexion à la bdd
+    // root par defaut sur Wamp
+    const DB_USER = "root";
+    // Mot de passe pour l'identifiant
+    // (souvent rien sur wamp)
+    const DB_PASSWORD = "";
+    // Nom de votre base de donnée
+    const DB_DATABASE = "magenda";
+
+    const DEV = true;
+}
+?>
+```
+
+### Creation de la base de données
+Pour créer la base de donnée, il vous suffit d'ouvrir phpMyAdmin 
+(wamp : http://localhost/phpmyadmin/)
+et de charger le fichier ![database.sql];
 
 ## Comment ca marche ? 
 Le `routeur` "index.php" permet de charger le bon controller en fonction des paramètres indiquées par le client dans la requête.
