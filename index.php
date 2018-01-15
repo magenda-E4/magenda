@@ -6,6 +6,8 @@ namespace Magenda;
 // sur la page
 //declare(strict_types=1);
 
+use Magenda\Model\User;
+
 session_start();
 
 include __DIR__ . "/autoload.php";
@@ -43,6 +45,13 @@ if(array_key_exists("action", $_GET)){
         $action = $_GET["action"];
     }
 }
+
+/** @var User $userConnected */
+$userConnected = User::whoIsConnected();
+
+
+
+
 
 
 // Nous chargeons le controller depuis le dossier

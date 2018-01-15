@@ -6,6 +6,9 @@
 </head>
 <body>
 <?php
+var_dump($_SESSION);
+?>
+<?php
     require_once __DIR__ ."/".$controller."/".$view.".php";
 ?>
 </body>

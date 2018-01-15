@@ -33,6 +33,17 @@ class User extends Model{
      */
     public function __construct(){}
 
+    public static function whoIsConnected(){
+        if(isset($_SESSION["id"])){
+            return User::select($_SESSION["id"]);
+        }
+        return null;
+    }
+
+    public static function hashPassword($password){
+        return sha1(md5($password."Bonjour, les copains"));
+    }
+
     public function getCompany(){
         if(is_null($this->company) && $this->company_id > 0){
             $this->company = Company::select($this->company_id);
