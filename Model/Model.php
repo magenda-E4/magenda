@@ -275,5 +275,54 @@ abstract class Model{
     public function getId(){
         return $this->id;
     }
+
+    /**
+     * Insertion en base de données
+     *
+     * Cette méthode est appelé pour inserer ("insert"),
+     * les données passées en paramètre dans la variable $data
+     * dans la table indiqué static::$TABLE directement
+     * dans la class qui appel cette methode.
+     * Cette methode ne doit pas être appelé directement depuis
+     * "Model", mais depuis une de ses classes filles
+     *
+     * @param array $data Indique les données à inserer dans la table
+     * sous forme de tableau tel que :
+     *      [
+     *          "clefDeLaTable" => "valeur pour le tuple"
+     *          "clefDeLaTable2" => "valeur2 pour le tuple"
+     *          "clefDeLaTable3" => "valeur3 pour le tuple"
+     *      ]
+     *
+     * @return Model|null On retourne l'objet créer
+     */
+    public static function insert($data) {
+        $into = $value = "";
+
+        foreach($data AS $clef =>$val){
+            $into .= "`".$clef."` , ";
+            $value .= ":".$clef." , ";
+        }
+
+        $into = substr($into, 0, -3);
+        $value = substr($value, 0,-3);
+
+        $sql = "INSERT INTO `".static::$TABLE."` (".$into.") VALUES (".$value.")";
+
+        try {
+
+            $req_prep = Model::$PDO->prepare($sql);
+            $req_prep->execute($data);
+            return static::select(Model::$PDO->lastInsertId());
+
+        } catch (PDOException $e) {
+            if (Config::DEV) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
 }
 Model::intializeDatabase();
