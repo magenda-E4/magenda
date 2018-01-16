@@ -16,7 +16,7 @@ if (isset($errors) AND count($errors) > 0) {
             </p>
             <p>
                 <label>Nom : </label>
-                <input type="text" name="name" />
+                <input type="text" name="lastname" />
             </p>
             <p>
                 <label>Email : </label>
@@ -36,7 +36,7 @@ if (isset($errors) AND count($errors) > 0) {
             </p>
             <p>
                 <label>Date de naissance : </label>
-                <input type="text" name="datebirth" />
+                <input type="date" name="datebirth" />
             </p>
             <p>
                 <label>Ville : </label>
