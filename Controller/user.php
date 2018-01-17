@@ -9,11 +9,11 @@ use Magenda\Model\User;
 if(strlen($action) <= 0){
     // Aucune action n'est indiqué
     // Nous chargeons par defaut
-    // l'action 404
+    // l'action list
     $action = "list";
 }
 switch ($action){
-    // Si l'action est 404 alors nous devons
+    // Si l'action est list alors nous devons
     // faire ...
     case "list":
         // Nous chargeons l'ensemble des utilisateurs
@@ -81,6 +81,3 @@ switch ($action){
 
         break;
 }
-
-
-?>

@@ -19,6 +19,3 @@ switch ($action){
         $view = "404";
         break;
 }
-
-
-?>

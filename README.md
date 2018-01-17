@@ -39,7 +39,7 @@ class Config{
 ### Creation de la base de données
 Pour créer la base de donnée, il vous suffit d'ouvrir phpMyAdmin 
 (wamp : http://localhost/phpmyadmin/)
-et de charger le fichier ![database.sql];
+et de charger le fichier (databse.sql)[database.sql]
 
 ## Comment ca marche ? 
 Le `routeur` "index.php" permet de charger le bon controller en fonction des paramètres indiquées par le client dans la requête.
