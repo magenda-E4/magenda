@@ -50,10 +50,6 @@ if(array_key_exists("action", $_GET)){
 $userConnected = User::whoIsConnected();
 
 
-
-
-
-
 // Nous chargeons le controller depuis le dossier
 //  Controller
 $controllerFilePath = __DIR__ . "/Controller/" .$controller.".php";
