@@ -41,6 +41,14 @@ Pour créer la base de donnée, il vous suffit d'ouvrir phpMyAdmin
 (wamp : http://localhost/phpmyadmin/)
 et de charger le fichier (databse.sql)[database.sql]
 
+### Organisation du front-end
+#### Les fichiers CSS
+L'ensemble des fichiers .css doivent être dans le dossier `include/css/`
+#### Les fichiers .JS
+L'ensemble des fichiers .js doivent être dans le dossier `include/js/`
+
+Plus spécifiquement, les librairies (Exemple jQuery) doivent être placées dans le dossier `include/js/lib/`
+
 ## Comment ca marche ? 
 Le `routeur` "index.php" permet de charger le bon controller en fonction des paramètres indiquées par le client dans la requête.
 Nous retrouvons le controller souhaité dans la variable `$_GET["controller"]`
