@@ -173,7 +173,7 @@ switch ($action){
         header("Location: index.php");
         break;
 
-    case "":
-
+    default :
+        $view = "list";
         break;
 }

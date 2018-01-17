@@ -23,6 +23,4 @@ switch ($action){
             header("Location: index.php");
         }
         break;
-    case "":
-        break;
 }
