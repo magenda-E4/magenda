@@ -46,11 +46,11 @@ switch ($action){
                     $currentUser = $searchUserByUsernameAndPassword[0];
                     $_SESSION["id"] = $currentUser->getId();
                 }else{
-                    $errors[] = "L'email ou le mot de passe sont incorrects";
+                    $errors[] = "L'email ou le mot de passe sont incorrects.";
                 }
             }
             else{
-                $errors[] = "Attention, il manque l'email ou le mot de passe (Elles sont vides)";
+                $errors[] = "Veuillez entrer un email ET un mot de passe.";
             }
         }
         else{
@@ -117,6 +117,16 @@ switch ($action){
             $errors['password_conf'] = 'Veuillez confirmer votre mot de passe';
         }
 
+        if (isset($_POST["phonenumber"])) {
+            if (!preg_match("#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$
+                    #", $_POST["phonenumber"])) {
+                $errors['phonenumber']='Veuillez entrer un numéro de téléphone valide';
+            }
+        }
+        else {
+            $errors['phonenumber'] = 'Veuillez entrer votre numéro de téléphone';
+        }
+
         if (!array_key_exists("password", $errors) AND !array_key_exists("password_conf", $errors)) {
             {
                 if ($_POST["password"] != $_POST["password_conf"]) {
@@ -127,7 +137,7 @@ switch ($action){
 
         //Inutile pour l'instant, voir une regex qui fonctionne
 
-        if (isset($_POST["datebirth"])) {
+        if (isset($_POST["datebirth"]) AND !empty($_POST["datebirth"])) {
             if (!preg_match("#^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$#",  $_POST["datebirth"])) {
             }
         }

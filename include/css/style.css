@@ -1,3 +1,49 @@
 body{
     background-color: transparent;
 }
+
+/** NAVBAR **/
+
+.navbar {
+      	border-radius : 0px;
+      }
+
+.nav .active {
+        font-weight:bold;
+      }
+
+.navbar-brand {
+	padding:0px;
+}
+.navbar-brand>img {
+		height: 100%;
+  		padding: 15px;
+        width: auto;	
+        opacity:0.5;
+        	filter: alpha(opacity=50);
+      }
+
+.brandactive>img{
+        opacity: 1.0;
+        	filter: alpha(opacity=100);
+      }
+
+.errors {
+        color: red;
+      }
+
+/** FORMS **/
+h4 {
+	text-align : center;
+}
+form {
+	text-align : center;
+}
+
+input {
+	border-radius : 20px;
+}
+
+.btn {
+	border-radius : 20px;
+}
