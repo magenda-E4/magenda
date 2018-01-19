@@ -18,6 +18,7 @@ class User extends Model{
     /** @var string */
     private $datebirth;
 
+    private $address;
     /** @var string */
     private $city;
     /** @var string */
@@ -105,6 +106,14 @@ class User extends Model{
     public function getDatebirthDateTime()
     {
         return new \DateTime($this->getDatebirthString());
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 
     /**

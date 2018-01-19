@@ -6,7 +6,7 @@ use Magenda\Model\User;
     <h1>Liste des utilisateurs du site</h1>
     <?php
     // J'arrive ici avec la variable $users
-    // qui m'a était indiqué dans le contrôleur
+    // qui m'a été indiquée dans le contrôleur
     // Controller/user.php
 
     // Nous verifions que nous avons bien des utilisateurs

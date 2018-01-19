@@ -11,6 +11,8 @@
     <!-- Stylesheet -->
     <link href="include/css/style.css" rel="stylesheet" />
 
+    <link rel="icon" type="image/png" href="public/img/favicon.png" />
+
 </head>
 <body>  
     <nav class="navbar navbar-default" role="navigation">
@@ -34,7 +36,7 @@
             </ul>
         <?php } else { ?>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span>     Mon profil</a></li>
+          <li><a href="index.php?controller=user&action=seeProfile"><span class="glyphicon glyphicon-user"></span>     Mon profil</a></li>
           <li><a href="index.php?controller=user&action=disconnect"><span class="glyphicon glyphicon-log-out"></span>     Déconnexion</a></li>
         </ul>
         <?php } ?>
@@ -50,8 +52,16 @@
 </body>
 
 	<!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Javascript de Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script> 
+      $(document).ready(function() {
+        $('#showForm').click(function() {
+          $('.show-onclick').fadeToggle(1000);
+        });
+      });
+    </script>
 
 </html>

@@ -52,6 +52,13 @@
                         <p class="errors"><?= $errors['datebirth']?></p>
                     <?php } ?>
                 </p>
+                 <p>
+                    <label>Adresse : </label> <br>
+                    <input type="text" name="address" value="<?php if (isset($_POST["address"])){ echo $_POST["address"];}?>"/>
+                    <?php if (isset($errors['address'])) { ?> 
+                        <p class="errors"><?= $errors['address']?></p>
+                    <?php } ?>
+                </p>
                 <p>
                     <label>Ville : </label> <br>
                     <input type="text" name="city" value="<?php if (isset($_POST["city"])){ echo $_POST["city"];}?>"/>

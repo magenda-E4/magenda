@@ -118,8 +118,7 @@ switch ($action){
         }
 
         if (isset($_POST["phonenumber"])) {
-            if (!preg_match("#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$
-                    #", $_POST["phonenumber"])) {
+            if (!preg_match("#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$#", $_POST["phonenumber"])) {
                 $errors['phonenumber']='Veuillez entrer un numéro de téléphone valide';
             }
         }
@@ -144,6 +143,9 @@ switch ($action){
         else {
             $errors['datebirth']='Veuillez entrer une date de naissance.';
         }
+
+        if (!isset($_POST["address"]) OR empty($_POST["address"])) 
+            $errors['adress']='Veuillez entrer votre adresse.';
             
 
         if (isset($_POST["city"])) {
@@ -166,15 +168,26 @@ switch ($action){
                 "password" => $password,
                 "phonenumber" => $_POST["phonenumber"],
                 "datebirth" => $_POST["datebirth"],
+                "address" => $_POST["address"],
                 "city" => $_POST["city"],
                 "postalcode" => $_POST["postalcode"]
             ));
+
+            header("Location: index.php");
         }
         $view= "connectForm";
 
         break;
 
-       
+    case "seeProfile":
+        if(!is_null($userConnected)) 
+        {
+            $searchUserByID = User::selectWhere(array("id" => $_SESSION["id"]));
+            $currentUser = $searchUserByID[0];
+            $view = "profile";
+        }
+        else header("Location: index.php");
+        break;
 
     case "disconnect":
         if(!is_null($userConnected)){
