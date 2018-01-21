@@ -32,6 +32,10 @@ body{
         color: red;
       }
 
+.success {
+        color: green;
+}
+
 /** FORMS **/
 h4 {
 	text-align : center;

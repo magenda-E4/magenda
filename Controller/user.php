@@ -28,6 +28,13 @@ switch ($action){
         $view = "list";
         break;
 
+    /**
+     * Permet de se connecter
+     > on vérifie si l'user n'est pas déjà connecté
+     > on vérifie si l'email et le password sont bien entrés
+     > on vérifie si ils correspondent dans la BDD
+     > on le connecte (creation de session)
+     */
     case "connect":
         $errors = [];
 
@@ -66,13 +73,27 @@ switch ($action){
         }
         break;
 
+    /**
+     * Permet d'ouvrir le form de connexion
+     */
+
     case "signUpForm":
         $errors = [];
         if(is_null($userConnected)) $view = "connectForm";
         else header("Location: index.php");
         break;
 
+    /**
+     * Une fois que l'utilisateur clique sur "S'inscrire"
+     > on vérifie le firstname (bien entré, regex)
+     > idem avec le lastname
+     > idem avec l'email + verif si déjà existant
+     > on vérfie le password
+     > on vérifie le numéro de telephone (bien entré, regex)
+     > idem pour adresse, code postal, ville...
+     > si il n'y a aucune erreur, on entre l'utilisateur dans la BDD
 
+     */
     case "signUp":
         $errors = [];
 
@@ -134,16 +155,6 @@ switch ($action){
             }
         }
 
-        //Inutile pour l'instant, voir une regex qui fonctionne
-
-        if (isset($_POST["datebirth"]) AND !empty($_POST["datebirth"])) {
-            if (!preg_match("#^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$#",  $_POST["datebirth"])) {
-            }
-        }
-        else {
-            $errors['datebirth']='Veuillez entrer une date de naissance.';
-        }
-
         if (!isset($_POST["address"]) OR empty($_POST["address"])) 
             $errors['adress']='Veuillez entrer votre adresse.';
             
@@ -179,6 +190,9 @@ switch ($action){
 
         break;
 
+     /**
+     * Permet d'ouvrir la page "Mon profil" en envoyant les données du compte courant
+     */   
     case "seeProfile":
         if(!is_null($userConnected)) 
         {
@@ -189,6 +203,33 @@ switch ($action){
         else header("Location: index.php");
         break;
 
+    /**
+     * Permet de changer le mot de passe de l'utilisateur après l'avoir vérifié
+     */
+    case "changePass":
+        $errors = [];
+        $success=[];
+        if(!is_null($userConnected))
+        {
+            $password = User::hashPassword($_POST["previousPwd"]);
+
+            if ($userConnected->getPassword() != $password) $errors['prevPwd']='Votre ancien mot de passe est incorrect';
+            if ($_POST["newPwd"] != $_POST["newPwd_conf"]) $errors['newPwd']='Les mots de passes ne correspondent pas';
+            if (!count($errors)>0)
+            {
+                $newPassword = User::hashPassword($_POST["newPwd"]);
+                $userConnected->update(array("password" => $newPassword));
+                $success['newPwd']="Votre mot de passe a bien été modifié !";
+            }
+            $view="profile";
+            $currentUser=$userConnected;
+        }
+        else header("Location: index.php");
+        break;
+
+     /**
+     * Deconnexion (détruit la session)
+     */
     case "disconnect":
         if(!is_null($userConnected)){
             session_destroy();
@@ -196,6 +237,9 @@ switch ($action){
         header("Location: index.php");
         break;
 
+    /**
+    * Vue par défaut
+    */
     default :
         $view = "list";
         break;
