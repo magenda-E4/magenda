@@ -1,6 +1,8 @@
 <?php
 namespace Magenda\Model;
 require_once "autoload.php";
+//Parce que le config marche pas dans l'autoload
+include "..\Config\Config.php";
 use Magenda\Config\Config;
 use PDO;
 use PDOException;
@@ -113,6 +115,25 @@ abstract class Model{
             die();
         }
     }
+
+    public static function selectData($data) {
+        $sql = "SELECT * from " . static::$TABLE." ".$data;
+        try {
+            /** @var \PDOStatement $rep */
+            $rep = Model::$PDO->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, static::class);
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            if (Config::DEV) {
+                echo "Erreur lors de la requête";
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
     public static function selectWhere($data, $ordered = null, $groupby = null) {
         $sql = "SELECT * from " . static::$TABLE . " WHERE ";
         $value = array();

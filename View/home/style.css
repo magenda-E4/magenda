@@ -1,0 +1,37 @@
+#search,#result,ul{
+    margin:0;
+    padding:0;
+    border:0;
+    width:200px;
+    line-height: 1.5em;
+}
+
+#resultat li{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+#result ul li a{
+    color:#000;
+    text-decoration:none;
+    width:200px;
+    height:30px;
+    display:block;
+    text-align: center;
+    border: 1px solid #000;
+    border-top: 0px;
+}
+#search{
+    border: 1px solid #000;
+}
+
+#result{
+    position: relative;
+    bottom: 18px;
+}
+
+#result ul li a:hover{
+    background-color: #333;
+    color: #FFF;
+}
