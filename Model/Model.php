@@ -2,7 +2,7 @@
 namespace Magenda\Model;
 require_once "autoload.php";
 //Parce que le config marche pas dans l'autoload
-include "..\Config\Config.php";
+include "../../Config/Config.php";
 use Magenda\Config\Config;
 use PDO;
 use PDOException;

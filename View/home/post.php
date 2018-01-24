@@ -1,8 +1,10 @@
 <?php
-    include "../Model/Company.php";
+    include "../../Model/Company.php";
 
     use Magenda\Model\Company;
+
     $comp = new Company();
+
 
     if(isset($_POST['search']) && !empty($_POST['search'])){
        //PDO::quote() protège contre les caractères spéciaux
