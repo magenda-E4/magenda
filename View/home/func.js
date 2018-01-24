@@ -9,5 +9,6 @@ $(document).ready(function(){
                 $("#result ul").html(data);
             });
         }
+
     });
 });
