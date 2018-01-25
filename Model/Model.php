@@ -113,6 +113,25 @@ abstract class Model{
             die();
         }
     }
+
+    public static function selectData($data) {
+        $sql = "SELECT * from " . static::$TABLE." ".$data;
+        try {
+            /** @var \PDOStatement $rep */
+            $rep = Model::$PDO->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, static::class);
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            if (Config::DEV) {
+                echo "Erreur lors de la requête";
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
     public static function selectWhere($data, $ordered = null, $groupby = null) {
         $sql = "SELECT * from " . static::$TABLE . " WHERE ";
         $value = array();
@@ -313,7 +332,8 @@ abstract class Model{
 
             $req_prep = Model::$PDO->prepare($sql);
             $req_prep->execute($data);
-            return static::select(Model::$PDO->lastInsertId());
+            if(static::$TABLE != "company_has_profession")
+                return static::select(Model::$PDO->lastInsertId());
 
         } catch (PDOException $e) {
             if (Config::DEV) {
@@ -323,6 +343,23 @@ abstract class Model{
             }
             die();
         }
+    }
+
+    /**
+     * Permet d'avoir l'objet courant sous forme de tableau
+     * associatif
+     *
+     * @return array
+     */
+    public function toArray(){
+        $array =(array) $this;
+        $result = [];
+        foreach ($array as $key => $value) {
+            if(preg_match("#^\\0(.*?)\\0(.*)$#", $key, $ret)){
+                $result[$ret[2]] = $value;
+            }
+        }
+        return $result;
     }
 }
 Model::intializeDatabase();

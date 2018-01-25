@@ -31,7 +31,12 @@
 
 <h2>Changer mon mot de passe </h2>
 
+
 <button class="btn btn-info" id = "showForm" value=""> <span class="glyphicon glyphicon-edit"></span>  Changer de mot de passe</button> <br> <br>
+
+<?php if (!empty($errors)) { ?> 
+    <p class="errors">Une erreur est survenue.</p>
+<?php } ?>
 
 <?php
 if (isset($success['newPwd'])) { ?>

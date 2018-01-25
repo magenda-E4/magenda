@@ -1,19 +1,20 @@
 <?php
-namespace Magenda;
 
 // Permet de voir toutes les
 // erreurs de php directement
 // sur la page
 //declare(strict_types=1);
 
+
+namespace Magenda;
 use Magenda\Model\User;
 
 session_start();
 
-include __DIR__ . "/autoload.php";
 
+include __DIR__ . "/autoload.php";
 // Valeur par defaut du contrôleur
-$controller = "user";
+$controller = "company";
 // Nous verifions si un controller
 // est indiqué dans la variable $_GET
 if(array_key_exists("controller", $_GET)){
@@ -46,13 +47,33 @@ if(array_key_exists("action", $_GET)){
     }
 }
 
+// Valeur par defaut de l'api
+// C'est elle qui indiquera au routeur
+// si nous devons utiliser les controller
+// de type API
+// ou les controller dit 'normaux'
+$api = false;
+// Nous verifions si une action
+// est indiqué dans la variable $_GET
+if(array_key_exists("api", $_GET)){
+    // Nous verifions que l'action indiqué n'est
+    // pas vide
+    if(!empty($_GET["api"]) && $_GET["api"] == '1'){
+        // Nous changeons la valeur
+        // de la variable action
+        // par la valeur indiqué
+        // par la variable $_GET
+        $api = (bool) $_GET["api"];
+    }
+}
+
 /** @var User $userConnected */
 $userConnected = User::whoIsConnected();
 
 
 // Nous chargeons le controller depuis le dossier
 //  Controller
-$controllerFilePath = __DIR__ . "/Controller/" .$controller.".php";
+$controllerFilePath = __DIR__ . "/Controller/".(($api)?"api/":"").$controller.".php";
 // Nous verifions si le fichier est existant
 if(!file_exists($controllerFilePath)){
     // Si le fichier n'existe pas alors nous chargeons
@@ -84,6 +105,8 @@ require_once $controllerFilePath;
 // La Vue est indiquée dans la variable $view
 // que le controller doit remplir pour appeler
 // la bonne vue dans le template.
-require_once __DIR__ . "/View/template.php";
-
+// Si nous souhaitons voir l'API, il ne faut pas charger le template
+// Nous laissons le controller renvoyer lui même directement les jsons
+// correspondant, la vue est alors géré par le Javascript.
+if(!$api) require_once __DIR__ . "/View/template.php";
 ?>

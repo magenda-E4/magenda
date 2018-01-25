@@ -14,11 +14,14 @@ if(strlen($action) <= 0){
 switch ($action){
     case "seeCalendar":
         if($userConnected instanceof User){
-            if(array_key_exist("iduser", $_GET) && is_numeric($_GET["iduser"]) && $_GET["iduser"] > 0){
+            $currentUser = null;
+            $currentCompany = null;
+            if(array_key_exists("iduser", $_GET) && is_numeric($_GET["iduser"]) && $_GET["iduser"] > 0){
                 $currentUser = User::select($_GET["iduser"]);
-            }elseif(array_key_exist("idcompany", $_GET)){
+            }elseif(array_key_exists("idcompany", $_GET)) {
                 $currentCompany = Company::select($_GET["idcompany"]);
             }
+            $view = "calendar";
         }else{
             header("Location: index.php");
         }
