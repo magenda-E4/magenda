@@ -3,7 +3,7 @@
 // Permet de voir toutes les
 // erreurs de php directement
 // sur la page
-declare(strict_types=1);
+//declare(strict_types=1);
 
 
 namespace Magenda;

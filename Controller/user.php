@@ -237,6 +237,10 @@ switch ($action){
         header("Location: index.php");
         break;
 
+    case "team":
+        $view = "team";
+        break;
+
     /**
     * Vue par défaut
     */
