@@ -16,7 +16,7 @@
 </head>
 <body>  
     <nav class="navbar navbar-default" role="navigation">
-      <div class = "contianer-fluid">
+      <div class = "container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <span class="icon-bar"></span>
