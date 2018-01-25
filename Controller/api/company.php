@@ -22,7 +22,7 @@ switch ($action){
                 $profession = $row->getProfession();
                 foreach ($profession as $p){
                     $profName = $p->getName();
-                    echo "<li><a href ='#'>".$name.", ".$profName."</a></li>";
+                    //echo "<li><a href ='#'>".$name.", ".$profName."</a></li>";
                     //array_push($res,$name,$profName);
                 }
             }
@@ -33,10 +33,12 @@ switch ($action){
                 /** @var Company $c */
                 foreach($companies as $c){
                     $name = $c->getName();
+                    $id = $c->getId();
+                    $urlinfo = "index.php?controller=company&action=info&ID=".$id;
                     $profession = $c->getProfession();
                     foreach ($profession as $p){
                         $profName = $p->getName();
-                        echo "<li><a href ='#'>".$name.", ".$profName."</a></li>";
+                        echo "<li><a href =".$urlinfo.">".$name.", ".$profName."</a></li>";
                         //array_push($res,$name,$profName);
                     }
                 }

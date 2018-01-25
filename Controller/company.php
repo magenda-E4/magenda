@@ -7,4 +7,7 @@ switch ($action){
     case "search":
         $view = "search";
         break;
+    case "info":
+        $view = "info";
+        break;
 }
