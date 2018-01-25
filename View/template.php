@@ -11,8 +11,9 @@
     <!-- Stylesheet -->
     <link href="include/css/style.css" rel="stylesheet" />
 
-    <link rel="icon" type="image/png" href="public/img/favicon.png" />
+    <link rel="icon" type="image/png" href="include/img/favicon.png" />
 
+    <script src="include/js/lib/jquery-1.12.4.min.js"></script>
 </head>
 <body>  
     <nav class="navbar navbar-default" role="navigation">
@@ -23,7 +24,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-             <a class="navbar-brand <?php if(!isset($_GET['action']) OR $_GET['action']=='home' OR empty($_GET['action'])) { echo 'brandactive';} ?>"  href="index.php"><img src ="public/img/Magenda_logo_wide.png" alt="Magenda"></a>
+             <a class="navbar-brand <?php if(!isset($_GET['action']) OR $_GET['action']=='home' OR empty($_GET['action'])) { echo 'brandactive';} ?>"  href="index.php"><img src ="include/img/Magenda_logo_wide.png" alt="Magenda"></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar">
@@ -32,7 +33,12 @@
             </ul>
         <?php if(is_null($userConnected)) { ?>
             <ul class="nav navbar-nav navbar-right">
-              <li <?php if(isset($_GET['action'])) if ($_GET['action']=='signUpForm' OR $_GET['action']=='signUp' OR $_GET['action']=='connect') { echo 'class="active"'; } ?>><a href="index.php?controller=user&action=signUpForm"><span class="glyphicon glyphicon-user"></span>     S'inscrire</a></li>
+              <li <?php if(isset($_GET['action'])) if ($_GET['action']=='signUpForm' OR $_GET['action']=='signUp' OR $_GET['action']=='connect') { echo 'class="active"'; } ?>>
+                  <a href="index.php?controller=user&action=signUpForm">
+                      <span class="glyphicon glyphicon-user"></span>
+                      Inscription / Connexion
+                  </a>
+              </li>
             </ul>
         <?php } else { ?>
         <ul class="nav navbar-nav navbar-right">
@@ -49,19 +55,16 @@
 	    require_once __DIR__ ."/".$controller."/".$view.".php";
 	?>
     </div>
-</body>
 
-	<!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Javascript de Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script> 
-      $(document).ready(function() {
-        $('#showForm').click(function() {
-          $('.show-onclick').fadeToggle(1000);
+    <script>
+        $(document).ready(function() {
+            $('#showForm').click(function() {
+                $('.show-onclick').fadeToggle(1000);
+            });
         });
-      });
     </script>
-
+</body>
 </html>

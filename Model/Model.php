@@ -1,8 +1,6 @@
 <?php
 namespace Magenda\Model;
 require_once "autoload.php";
-//Parce que le config marche pas dans l'autoload
-include "../../Config/Config.php";
 use Magenda\Config\Config;
 use PDO;
 use PDOException;
@@ -334,6 +332,7 @@ abstract class Model{
 
             $req_prep = Model::$PDO->prepare($sql);
             $req_prep->execute($data);
+            if(static::$TABLE != "company_has_profession" || static::$TABLE)
             return static::select(Model::$PDO->lastInsertId());
 
         } catch (PDOException $e) {
@@ -344,6 +343,23 @@ abstract class Model{
             }
             die();
         }
+    }
+
+    /**
+     * Permet d'avoir l'objet courant sous forme de tableau
+     * associatif
+     *
+     * @return array
+     */
+    public function toArray(){
+        $array =(array) $this;
+        $result = [];
+        foreach ($array as $key => $value) {
+            if(preg_match("#^\\0(.*?)\\0(.*)$#", $key, $ret)){
+                $result[$ret[2]] = $value;
+            }
+        }
+        return $result;
     }
 }
 Model::intializeDatabase();

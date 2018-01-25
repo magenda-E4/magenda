@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `magenda`.`profession` (
 DROP TABLE IF EXISTS `magenda`.`event` ;
 
 CREATE TABLE IF NOT EXISTS `magenda`.`event` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `startdatetime` DATETIME NOT NULL,
   `enddatetime` DATETIME NOT NULL,
   `company_id` INT NOT NULL,

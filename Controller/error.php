@@ -4,7 +4,6 @@
 // verifier si une action
 // existe, sinon nous
 // en indicons une par defaut
-
 if(strlen($action) <= 0){
     // Aucune action n'est indiqué
     // Nous chargeons par defaut
