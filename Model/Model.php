@@ -332,8 +332,8 @@ abstract class Model{
 
             $req_prep = Model::$PDO->prepare($sql);
             $req_prep->execute($data);
-            if(static::$TABLE != "company_has_profession" || static::$TABLE)
-            return static::select(Model::$PDO->lastInsertId());
+            if(static::$TABLE != "company_has_profession")
+                return static::select(Model::$PDO->lastInsertId());
 
         } catch (PDOException $e) {
             if (Config::DEV) {
