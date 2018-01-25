@@ -11,7 +11,7 @@
     <!-- Stylesheet -->
     <link href="include/css/style.css" rel="stylesheet" />
 
-    <link rel="icon" type="image/png" href="public/img/favicon.png" />
+    <link rel="icon" type="image/png" href="include/img/favicon.png" />
 
 </head>
 <body>  
@@ -23,7 +23,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-             <a class="navbar-brand <?php if(!isset($_GET['action']) OR $_GET['action']=='home' OR empty($_GET['action'])) { echo 'brandactive';} ?>"  href="index.php"><img src ="public/img/Magenda_logo_wide.png" alt="Magenda"></a>
+             <a class="navbar-brand <?php if(!isset($_GET['action']) OR $_GET['action']=='home' OR empty($_GET['action'])) { echo 'brandactive';} ?>"  href="index.php"><img src ="include/img/Magenda_logo_wide.png" alt="Magenda"></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar">
@@ -32,7 +32,7 @@
             </ul>
         <?php if(is_null($userConnected)) { ?>
             <ul class="nav navbar-nav navbar-right">
-              <li <?php if(isset($_GET['action'])) if ($_GET['action']=='signUpForm' OR $_GET['action']=='signUp' OR $_GET['action']=='connect') { echo 'class="active"'; } ?>><a href="index.php?controller=user&action=signUpForm"><span class="glyphicon glyphicon-user"></span>     S'inscrire</a></li>
+              <li <?php if(isset($_GET['action'])) if ($_GET['action']=='signUpForm' OR $_GET['action']=='signUp' OR $_GET['action']=='connect') { echo 'class="active"'; } ?>><a href="index.php?controller=user&action=signUpForm"><span class="glyphicon glyphicon-user"></span>     S'inscrgire</a></li>
             </ul>
         <?php } else { ?>
         <ul class="nav navbar-nav navbar-right">
