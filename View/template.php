@@ -11,7 +11,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link href="/include/css/style2.css" rel="stylesheet" />
+    <link href="include/css/style2.css" rel="stylesheet" />
 
     <link rel="icon" type="image/png" href="include/img/favicon.png" />
 
