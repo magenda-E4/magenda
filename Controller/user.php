@@ -10,7 +10,7 @@ if(strlen($action) <= 0){
     // Aucune action n'est indiqué
     // Nous chargeons par defaut
     // l'action list
-    $action = "list";
+    $action = "connect";
 }
 switch ($action){
     // Si l'action est list alors nous devons
@@ -44,7 +44,7 @@ switch ($action){
             if(!empty($_POST["email"]) || !empty($_POST["password"])){
                 $password = User::hashPassword($_POST["password"]);
                 $searchUserByUsernameAndPassword = User::selectWhere(array(
-                   "email" => $_POST["email"],
+                   "email" => strtolower($_POST["email"]),
                     "password" => $password
                 ));
                 $numberOfUserWith = count($searchUserByUsernameAndPassword);
@@ -119,7 +119,7 @@ switch ($action){
         if (isset($_POST["email"])) {
             if (preg_match( "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
             {
-                $searchUserByEmail = User::selectWhere(array("email" => $_POST["email"]));
+                $searchUserByEmail = User::selectWhere(array("email" => strtolower($_POST["email"])));
                 $numberOfUserWith = count($searchUserByEmail);
                 if($numberOfUserWith > 0){
                     $errors['email'] = "L'email est déjà utilisé !";
@@ -175,7 +175,7 @@ switch ($action){
             User::insert(array(
                 "firstname" => $_POST["firstname"],
                 "lastname" => $_POST["lastname"],
-                "email" => $_POST["email"],
+                "email" => strtolower($_POST["email"]),
                 "password" => $password,
                 "phonenumber" => $_POST["phonenumber"],
                 "datebirth" => $_POST["datebirth"],

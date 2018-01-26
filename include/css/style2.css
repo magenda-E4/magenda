@@ -1,7 +1,11 @@
-body{
-    background-color: transparent;
+html, body {
+    height: 100%;
+    margin: 0; padding: 0;
 }
-
+body {
+    display : table;
+    width: 100%;
+}
 /** NAVBAR **/
 
 .navbar {
@@ -196,7 +200,8 @@ Image credits: unsplash.com
 /** FOOTER **/
 
 .footer {
-  margin-top:50px;
+  margin-top:200px;
+    display : table-row;
   text-align:center;
   bottom: 0;
   width: 100%;

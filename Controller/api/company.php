@@ -22,7 +22,8 @@ switch ($action){
                 $profession = $row->getProfession();
                 foreach ($profession as $p){
                     $profName = $p->getName();
-                    //echo "<li><a href ='#'>".$name.", ".$profName."</a></li>";
+                    $urlinfo = "index.php?controller=company&action=info&ID=".$row->getId();
+                    echo "<li><a href ='{$urlinfo}'>".$name.", ".$profName."</a></li>";
                     //array_push($res,$name,$profName);
                 }
             }

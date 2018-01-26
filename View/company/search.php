@@ -14,9 +14,13 @@
       <div class="hero">
         <hgroup>
             <h1>We are creative</h1>        
-            <h3>Create an account to start the adventure</h3>
+            <h3>
+                <?php echo ($userConnected instanceof \Magenda\Model\User)?"Let's see your Magenda !":"Create an account to start the adventure";?>
+            </h3>
         </hgroup>
-        <a href="index.php?controller=user&action=signUpForm" class="btn btn-hero btn-lg" role="button">Create an account</a>
+        <a href="index.php?controller=<?php echo ($userConnected instanceof \Magenda\Model\User)?"event&action=seeCalendar&iduser=".$userConnected->getId():"user&action=signUpForm";?>" class="btn btn-hero btn-lg" role="button">
+            <?php echo ($userConnected instanceof \Magenda\Model\User)?"Personnal Magenda":"Create an account";?>
+        </a>
       </div>
     </div>
     <div class="item slides">
@@ -68,4 +72,4 @@ Le professionnel recevra une notification, et vous recevrez un message de confir
 
     </ul>
 </div>
-<script src="include/js/func.js"></script> 
+<script src="include/js/func.js"></script>

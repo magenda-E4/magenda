@@ -1,8 +1,7 @@
+<h1><?php echo $title;?></h1>
 <div id="eventCalendar">
 
 </div>
-
-
 <!-- Full Calendar !-->
 <!-- Licence : https://fullcalendar.io/license/ -->
 <script src="include/js/lib/fullCalendar/moment.min.js" type="text/javascript"> </script>

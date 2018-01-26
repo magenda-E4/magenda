@@ -11,7 +11,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link href="include/css/style2.css" rel="stylesheet" />
+    <link href="/include/css/style2.css" rel="stylesheet" />
 
     <link rel="icon" type="image/png" href="include/img/favicon.png" />
 
@@ -44,8 +44,21 @@
             </ul>
         <?php } else { ?>
         <ul class="nav navbar-nav navbar-right">
-          <li <?php if(isset($_GET['action'])) if ($_GET['action']=='seeProfile') { echo 'class="active"'; } ?>><a href="index.php?controller=user&action=seeProfile"><span class="glyphicon glyphicon-user"></span>     Mon profil</a></li>
-          <li><a href="index.php?controller=user&action=disconnect"><span class="glyphicon glyphicon-log-out"></span>     Déconnexion</a></li>
+            <li <?php echo ($action == "seeCalendar")?'class="active"':'';?>>
+                <a  href="index.php?controller=event&action=seeCalendar&iduser=<?php echo $userConnected->getId();?>">
+                    <span class="fa fa-calendar"></span> Mon Calendrier
+                </a>
+            </li>
+          <li <?php if(isset($_GET['action'])) if ($_GET['action']=='seeProfile') { echo 'class="active"'; } ?>>
+              <a href="index.php?controller=user&action=seeProfile">
+                  <span class="glyphicon glyphicon-user"></span> Mon profil
+              </a>
+          </li>
+          <li>
+              <a href="index.php?controller=user&action=disconnect">
+                  <span class="glyphicon glyphicon-log-out"></span> Déconnexion
+              </a>
+          </li>
         </ul>
         <?php } ?>
         </div>
@@ -70,9 +83,24 @@
             });
         });
     </script>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
     <div class="footer">
       <div class="container">
-        <span class="text-muted">Magenda est un projet réalisé par des développeurs en herbe (ou pas) de l'ESIEE Paris dans le cadre de l'unité SI-4301B.</span>
+        <span class="text-muted">
+            Magenda est un projet réalisé par des développeurs en herbe (ou pas)
+            de l'ESIEE Paris dans le cadre de l'unité SI-4301B.
+            <a href="https://github.com/magenda-E4/magenda">
+                <span class="fa fa-github-square"></span>
+                Open-Source
+            </a>
+        </span>
       </div>
     </div>
     
